@@ -24,8 +24,32 @@
   createElement('img2','stop2')
   createElement('img3','stop3')
 
+  const img1 = document.getElementById('img1')
+  const img2 = document.getElementById('img2')
+  const img3 = document.getElementById('img3')
+  
+  const spin = document.getElementById('spin')
+  const stop1 = document.getElementById('stop1')
+  const stop2 = document.getElementById('stop2')
+  const stop3 = document.getElementById('stop3')
 
-  //画像を切り替える
+  spin.addEventListener('click', () => {
+    let intervalID1 = spinningSlot(img1)
+    let intervalID2 = spinningSlot(img2)
+    let intervalID3 = spinningSlot(img3)
+    addStopProcess(stop1,intervalID1)
+    addStopProcess(stop2,intervalID2)
+    addStopProcess(stop3,intervalID3)
+  })
+
+
+  const spinningSlot = (img) => {
+    let intervalID = setInterval(() => {
+      img.src = switchImage()
+    },10)
+    return intervalID
+  }
+
   const switchImage = () => {
     const imgArray = [
       'cherry.png',
@@ -35,56 +59,11 @@
     return imgArray[Math.floor(Math.random() * imgArray.length)]
   }
 
-
-  const img1 = document.getElementById('img1')
-  const img2 = document.getElementById('img2')
-  const img3 = document.getElementById('img3')
-  
-  let intervalID1;
-  let intervalID2;
-  let intervalID3;
-  
-  // const spinningSlot = (intervalID,img) => {
-  //   intervalID = setInterval(() => {
-  //     img.src = switchImage()
-  //   },10)
-  // }
-
-  const spinningSlot = (img) => {
-    let intervalID = setInterval(() => {
-      img.src = switchImage()
-    },10)
-    return intervalID
+  const addStopProcess = (element,intervalID) => {
+    element.addEventListener('click',() => {
+      clearInterval(intervalID)
+    })
   }
-
-
-  
-const spin = document.getElementById('spin')
-const stop1 = document.getElementById('stop1')
-const stop2 = document.getElementById('stop2')
-const stop3 = document.getElementById('stop3')
-
-spin.addEventListener('click', () => {
-  intervalID1 = spinningSlot(img1)
-  intervalID2 = spinningSlot(img2)
-  intervalID3 = spinningSlot(img3)
-  stoppingSlot(stop1,intervalID1)
-  stoppingSlot(stop2,intervalID2)
-  stoppingSlot(stop3,intervalID3)
-})
-
-// const stoppingSlot = (element,intervalID) => {
-//   element.addEventListener('click',() => {
-//   clearInterval(intervalID)
-//   })
-// }
-
-const stoppingSlot = (element,intervalID) => {
-  element.addEventListener('click',() => {
-  clearInterval(intervalID)
-  })
-}
-
 
 }
 
