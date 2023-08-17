@@ -40,36 +40,51 @@
   const img2 = document.getElementById('img2')
   const img3 = document.getElementById('img3')
   
-  let timeoutID1;
-  let timeoutID2;
-  let timeoutID3;
+  let intervalID1;
+  let intervalID2;
+  let intervalID3;
   
-  const spinningSlot = (timeoutID,img) => {
-    timeoutID = setInterval(() => {
+  // const spinningSlot = (intervalID,img) => {
+  //   intervalID = setInterval(() => {
+  //     img.src = switchImage()
+  //   },10)
+  // }
+
+  const spinningSlot = (img) => {
+    let intervalID = setInterval(() => {
       img.src = switchImage()
     },10)
+    return intervalID
   }
 
 
-
+  
 const spin = document.getElementById('spin')
-spin.addEventListener('click', () => {
-  spinningSlot(timeoutID1,img1)
-  spinningSlot(timeoutID2,img2)
-  spinningSlot(timeoutID3,img3)
-})
-
-const stoppingSlot = (element,timeoutID) => {
-  element.addEventListener('click',() => {
-  clearInterval(timeoutID)
-  })
-}
 const stop1 = document.getElementById('stop1')
 const stop2 = document.getElementById('stop2')
 const stop3 = document.getElementById('stop3')
-stoppingSlot(stop1,timeoutID1)
-stoppingSlot(stop2,timeoutID2)
-stoppingSlot(stop3,timeoutID3)
+
+spin.addEventListener('click', () => {
+  intervalID1 = spinningSlot(img1)
+  intervalID2 = spinningSlot(img2)
+  intervalID3 = spinningSlot(img3)
+  stoppingSlot(stop1,intervalID1)
+  stoppingSlot(stop2,intervalID2)
+  stoppingSlot(stop3,intervalID3)
+})
+
+// const stoppingSlot = (element,intervalID) => {
+//   element.addEventListener('click',() => {
+//   clearInterval(intervalID)
+//   })
+// }
+
+const stoppingSlot = (element,intervalID) => {
+  element.addEventListener('click',() => {
+  clearInterval(intervalID)
+  })
+}
+
 
 }
 
