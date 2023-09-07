@@ -6,7 +6,7 @@
     divElement.classList.add('slot-panel')
 
     const img = document.createElement('img')
-    img.src = 'seven.png'
+    img.src = 'img/seven.png'
     img.setAttribute('id',imgID)
     
     const stop = document.createElement('button')
@@ -52,9 +52,9 @@
 
   const switchImage = () => {
     const imgArray = [
-      'cherry.png',
-      'bell.png',
-      'seven.png'
+      'img/cherry.png',
+      'img/bell.png',
+      'img/seven.png'
     ]
     return imgArray[Math.floor(Math.random() * imgArray.length)]
   }
